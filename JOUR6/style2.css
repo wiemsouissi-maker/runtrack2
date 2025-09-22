@@ -1,0 +1,21 @@
+body {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOt7XHjZzpKg8o4vZNMFv8o5Zl1i6TuVKjvQ&s);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Courier New", monospace;
+    text-align: center;
+    padding: 50px;
+}
+
+form {
+    background-color: #10087f;
+    padding: 40px;
+    border: 2px solid #f8f8f8;
+    border-radius: 30px;
+    display: inline-block;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    border: 5px dashed #ff69b4;
+    color: #f8f8f8;
+
+}

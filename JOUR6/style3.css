@@ -1,0 +1,19 @@
+body {
+    background-image: url(https://blog.kiatoo.com/wp-content/uploads/2023/07/fond-decran-anime-windows-kiatoo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: #3b0621;
+
+}
+
+form {
+    background-color: rgba(85, 10, 51, 0.8);
+    padding: 40px;
+    border-radius: 50Px;
+    display: inline-block;
+    border: 10px dashed #ff69b4;
+}
