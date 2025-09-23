@@ -1,3 +1,4 @@
+
 <?php
 // Récupération du style choisi, par défaut style1
 $style = isset($_POST['style']) ? $_POST['style'] : 'style1';
@@ -19,7 +20,23 @@ $style = isset($_POST['style']) ? $_POST['style'] : 'style1';
             <option value="style3" <?php if($style=="style3") echo "selected"; ?>>Style 3</option>
         </select>
         <button type="submit">Appliquer</button>
+         <!-- TON FORMULAIRE PRINCIPAL (par exemple un formulaire de contact) -->
+    <form action="traitement.php" method="POST">
+        <h2>Formulaire de contact</h2>
+
+        <label for="nom">Nom :</label><br>
+        <input type="text" id="nom" name="nom" required><br><br>
+
+        <label for="email">Email :</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="message">Message :</label><br>
+        <textarea id="message" name="message" rows="4" cols="30"></textarea><br><br>
+
+        <button type="submit">Envoyer</button>
     </form>
+    </form>
+
 </body>
 </html>
  
