@@ -1,22 +1,16 @@
 <?php
 session_start();
 
-// --- Initialisation de la grille ---
 if (!isset($_SESSION['grille']) || isset($_POST['reset'])) {
     $_SESSION['grille'] = array_fill(0, 3, array_fill(0, 3, "-"));
-    $_SESSION['tour'] = "X"; // X commence
+    $_SESSION['tour'] = "X";
     $_SESSION['message'] = "";
 }
 
-// --- Traitement d'un clic sur une case ---
 if (isset($_POST['case'])) {
-    list($i, $j) = explode("_", $_POST['case']); // "0_1" → [0,1]
-
-    // Si la case est libre et qu'il n'y a pas encore de gagnant
-    if ($_SESSION['grille'][$i][$j] === "-" && $_SESSION['message'] === "") {
+    list($i, $j) = explode("_", $_POST['case']);  
+ if ($_SESSION['grille'][$i][$j] === "-" && $_SESSION['message'] === "") {
         $_SESSION['grille'][$i][$j] = $_SESSION['tour'];
-
-        // Vérifier s'il y a un gagnant
         if (verifierGagnant($_SESSION['grille'], $_SESSION['tour'])) {
             $_SESSION['message'] = $_SESSION['tour'] . " a gagné !";
         } elseif (grillePleine($_SESSION['grille'])) {
@@ -53,11 +47,7 @@ function grillePleine($grille)
     return true;
 }
 
-// Réinitialiser automatiquement si message (gagnant ou nul)
 if ($_SESSION['message'] !== "" && isset($_POST['case'])) {
-    // Petite pause pour que l'utilisateur voie le message avant reset
-    // Vous pouvez enlever la pause si pas nécessaire
-    // sleep(1);
     $_SESSION['grille'] = array_fill(0, 3, array_fill(0, 3, "-"));
     $_SESSION['tour'] = "X";
 }
@@ -69,33 +59,63 @@ if ($_SESSION['message'] !== "" && isset($_POST['case'])) {
     <meta charset="UTF-8">
     <title>Jeu du Morpion</title>
     <style>
-        table { border-collapse: collapse; margin: 20px auto; }
-        td { width: 60px; height: 60px; text-align: center; border: 2px solid black; }
-        button { width: 100%; height: 100%; font-size: 20px; }
+        table { border-collapse: collapse; margin: 40px auto; }
+
+        td { width: 80px; height: 90px; text-align: center; border: 5px solid black; }
+
+        button { width: 100%; height: 100%; font-size: 40px; }
+
         h2, h3 { text-align: center; }
+        body { font-family: Arial, sans-serif; 
+            BACKGROUND-IMAGE: URL('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover; background-attachment: fixed; background-position: center;
+            background-repeat: no-repeat; margin: 0; padding: 0 
+            
+            ; }
+        h2 { color: #5a0e4fff;}         
+        h3 { color: #e171b8ff; }
+        form { margin-top: 20px; }
+        button[type="submit"] { background-color: #700759ff; color: white;
+        border: none; padding: 10px 20px; cursor: pointer; font-size: 16px; border-radius: 5px; }
+        button[type="submit"]:hover { background-color: #45a049; }
+
+        table { background-color:#ffffff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }  
+        td { background-color: #e0e0e0; }
+        td button { background-color: #ffffff; }
+
     </style>
+
 </head>
 <body>
     <h2>Jeu du Morpion</h2>
     <?php if ($_SESSION['message']): ?>
-        <h3><?php echo $_SESSION['message']; ?></h3>
+        <h3><?php 
+          echo $_SESSION['message']; ?></h3>
     <?php else: ?>
+
         <h3>Tour de : <?php echo $_SESSION['tour']; ?></h3>
     <?php endif; ?>
 
     <form method="post">
+        
         <table>
-            <?php for ($i = 0; $i < 3; $i++): ?>
-                <tr>
-                    <?php for ($j = 0; $j < 3; $j++): ?>
-                        <td>
-                            <?php if ($_SESSION['grille'][$i][$j] === "-"): ?>
-                                <button type="submit" name="case" value="<?php echo $i . "_" . $j; ?>">-</button>
-                            <?php else: ?>
-                                <?php echo "<strong>" . $_SESSION['grille'][$i][$j] . "</strong>"; ?>
-                            <?php endif; ?>
-                        </td>
-                    <?php endfor; ?>
+     <?php for ($i = 0; $i < 3; $i++): ?>
+         <tr>
+   <?php for ($j = 0; $j < 3; $j++): ?>
+           <td>
+    
+    <?php 
+
+
+                            
+   if ($_SESSION['grille'][$i][$j] === "-"): ?>
+        <button type="submit" name="case" value="<?php echo $i . "_" . $j; ?>">-</button>
+         <?php else: ?>
+         <?php echo "<strong>" .
+          $_SESSION['grille'][$i][$j] . "</strong>"; ?>
+          <?php endif; ?>
+             </td>
+          <?php endfor; ?>
                 </tr>
             <?php endfor; ?>
         </table>
