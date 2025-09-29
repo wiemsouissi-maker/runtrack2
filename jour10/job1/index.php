@@ -47,20 +47,17 @@ if ($row['count'] == 0) {
 </head>
 <body>
 <?php
-// 5️⃣ Récupérer les données
 $sql = "SELECT * FROM etudiants";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table>";
-    // En-tête
     echo "<thead><tr>";
     while ($fieldinfo = $result->fetch_field()) {
         echo "<th>" . htmlspecialchars($fieldinfo->name) . "</th>";
     }
     echo "</tr></thead>";
 
-    // Corps du tableau
     echo "<tbody>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
@@ -75,7 +72,6 @@ if ($result->num_rows > 0) {
     echo "<p>Aucun étudiant trouvé.</p>";
 }
 
-// 6️⃣ Fermer la connexion
 $conn->close();
 ?>
 </body>
